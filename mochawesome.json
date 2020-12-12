@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2020-12-12T19:28:07.459Z",
-    "end": "2020-12-12T19:28:19.265Z",
-    "duration": 11806,
+    "start": "2020-12-12T19:30:34.564Z",
+    "end": "2020-12-12T19:30:52.437Z",
+    "duration": 17873,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "5c3ddee1-ff59-4d47-bd30-8c64db5d62b6",
+      "uuid": "efa0b781-d4b9-403c-9af5-9c85b4d8dd55",
       "title": "",
       "fullFile": "cypress/integration/compra.spec.js",
       "file": "cypress/integration/compra.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "5bcb7c02-1b1f-42d4-bdcb-3dc19a7c1229",
+          "uuid": "c0e685c4-0d16-4038-bcd1-a2176500b14a",
           "title": "Compra",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Efetuar uma compra de produto",
               "fullTitle": "Compra Efetuar uma compra de produto",
               "timedOut": null,
-              "duration": 11729,
+              "duration": 17801,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.backgroundLogin(); //http://automationpractice.com/index.php\ncy.visit('/');\nvar nomeProduto = 'Faded Short Sleeve T-shirts';\ncy.contains(nomeProduto).trigger('mouseover');\ncy.contains(nomeProduto).parent() //h5\n.siblings('div.button-container').children('a').first() // ad to cart\n.click(); // Validando se o produto foi adicionaod com sucesso\ncy.get('.icon-ok').parent().should('contain.text', 'Product successfully added to your shopping cart');\ncy.get('span#layer_cart_product_title').should('contain.text', nomeProduto);\ncy.get(\".button-container a[href$='controller=order']\").click();\ncy.get(\".cart_navigation a[href$='order&step=1']\").click(); //Já logado com o Cookie\n//cy.get('#email').type('semana-agilizei2@mail.com')\n//cy.get('#passwd').type('agilizei2')\n//cy.get('button#SubmitLogin').click()\n// Validando se o endereço de entrega é igual o de cobrança\ncy.get('[type=checkbox]#addressesAreEquals').should('have.attr', 'checked', 'checked');\ncy.get('[type=checkbox]#addressesAreEquals').should('have.attr', 'name', 'same');\ncy.get('button[name=processAddress]').click();\ncy.get('[type=checkbox]#cgv').check();\ncy.get('button[name=processCarrier]').click();\ncy.get('.bankwire').click();\ncy.get('.cart_navigation button[type=submit]').find('span').contains('I confirm my order').click();\ncy.get('.cheque-indent strong').should('contain.text', 'Your order on My Store is complete.'); // capturar o texto do box\ncy.get('div.box').invoke('text').then(function (text) {\n  console.log(text); //filtrar o texto do box para extrair somente o ID do pedido usando regexr\n  console.log(text.match(/[A-Z][A-Z]+/g)[1]); //escrita de um arquivo json com o conteúdo do pedido\n  cy.writeFile('cypress/fixtures/pedido.json', {\n    id: \"\".concat(text.match(/[A-Z][A-Z]+/g)[1])\n  });\n});\ncy.get(\".cart_navigation a[href$='history']\").click(); //leitura de arquivo\ncy.readFile('cypress/fixtures/pedido.json').then(function (pedido) {\n  cy.get('tr.first_item .history_link a').should('contain.text', pedido.id);\n});",
               "err": {},
-              "uuid": "187b19c9-4e83-4661-afbd-87af9f820366",
-              "parentUUID": "5bcb7c02-1b1f-42d4-bdcb-3dc19a7c1229",
+              "uuid": "087cb9a7-2084-42c7-ae05-f57ed298a84d",
+              "parentUUID": "c0e685c4-0d16-4038-bcd1-a2176500b14a",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "187b19c9-4e83-4661-afbd-87af9f820366"
+            "087cb9a7-2084-42c7-ae05-f57ed298a84d"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 11729,
+          "duration": 17801,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
