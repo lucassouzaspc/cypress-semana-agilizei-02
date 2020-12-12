@@ -1,0 +1,7 @@
+passo a passo.txt
+node_modules
+cypress/videos
+cypress/screenshots
+
+mochawesome-report
+index.json
