@@ -1,0 +1,102 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-12-12T18:30:18.888Z",
+    "end": "2020-12-12T18:30:37.176Z",
+    "duration": 18288,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "efcedc15-2ae2-4d3f-bb26-5ee7152989f0",
+      "title": "",
+      "fullFile": "cypress/integration/compra.spec.js",
+      "file": "cypress/integration/compra.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d96ef6d3-5b74-44ae-9f36-f89a2286fc91",
+          "title": "Compra",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Efetuar uma compra de produto",
+              "fullTitle": "Compra Efetuar uma compra de produto",
+              "timedOut": null,
+              "duration": 18225,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.backgroundLogin(); //http://automationpractice.com/index.php\ncy.visit('/');\nvar nomeProduto = 'Faded Short Sleeve T-shirts';\ncy.contains(nomeProduto).trigger('mouseover');\ncy.contains(nomeProduto).parent() //h5\n.siblings('div.button-container').children('a').first() // ad to cart\n.click(); // Validando se o produto foi adicionaod com sucesso\ncy.get('.icon-ok').parent().should('contain.text', 'Product successfully added to your shopping cart');\ncy.get('span#layer_cart_product_title').should('contain.text', nomeProduto);\ncy.get(\".button-container a[href$='controller=order']\").click();\ncy.get(\".cart_navigation a[href$='order&step=1']\").click(); //Já logado com o Cookie\n//cy.get('#email').type('semana-agilizei2@mail.com')\n//cy.get('#passwd').type('agilizei2')\n//cy.get('button#SubmitLogin').click()\n// Validando se o endereço de entrega é igual o de cobrança\ncy.get('[type=checkbox]#addressesAreEquals').should('have.attr', 'checked', 'checked');\ncy.get('[type=checkbox]#addressesAreEquals').should('have.attr', 'name', 'same');\ncy.get('button[name=processAddress]').click();\ncy.get('[type=checkbox]#cgv').check();\ncy.get('button[name=processCarrier]').click();\ncy.get('.bankwire').click();\ncy.get('.cart_navigation button[type=submit]').find('span').contains('I confirm my order').click();\ncy.get('.cheque-indent strong').should('contain.text', 'Your order on My Store is complete.'); // capturar o texto do box\ncy.get('div.box').invoke('text').then(function (text) {\n  console.log(text); //filtrar o texto do box para extrair somente o ID do pedido usando regexr\n  console.log(text.match(/[A-Z][A-Z]+/g)[1]); //escrita de um arquivo json com o conteúdo do pedido\n  cy.writeFile('cypress/fixtures/pedido.json', {\n    id: \"\".concat(text.match(/[A-Z][A-Z]+/g)[1])\n  });\n});\ncy.get(\".cart_navigation a[href$='history']\").click(); //leitura de arquivo\ncy.readFile('cypress/fixtures/pedido.json').then(function (pedido) {\n  cy.get('tr.first_item .history_link a').should('contain.text', pedido.id);\n});",
+              "err": {},
+              "uuid": "89b5f52a-4480-4aed-98bb-5a547480ac23",
+              "parentUUID": "d96ef6d3-5b74-44ae-9f36-f89a2286fc91",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "89b5f52a-4480-4aed-98bb-5a547480ac23"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18225,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": {
+        "id": "default"
+      },
+      "version": "5.1.0"
+    }
+  }
+}
